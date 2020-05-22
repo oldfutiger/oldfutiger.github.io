@@ -32,10 +32,16 @@ tags: hexo
 
 
 第一种虽然更规则一些，但个人感觉不是很方便，所以我选择的是第二种。
-
-首先我们需要在github仓库新建一个分支
+### 1-1. 创建分支
+首先我们需要在github仓库新建一个分支：
 ![](branch-prcture.jpg)
 在其中输入分支名称`hexo`，直接回车即可创建。
+### 1-2. 分支设置
+
+上一步操作已经创建好了环境存储分支，但当前的仓库默认分支仍为`master`，所以在`hexo`分支创建完成后，需要将其设置为默认分支，切换到该`hexo`分支，并在该仓库`->Settings->Branches->Default branch`中将默认分支设为`hexo`，`update`保存：
+![](setting-picture.jpg)
+第五步务必点选。
+
 
 
 
