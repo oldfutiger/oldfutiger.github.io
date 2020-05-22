@@ -192,6 +192,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://oldfutiger.github.io/2020/05/21/hexo博客不同设备进行同步更新/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="Mr.Zhao">
+      <meta itemprop="description" content="this it's a Technology sharing blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="52Hertz技术庄园">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/21/hexo博客不同设备进行同步更新/" class="post-title-link" itemprop="url">hexo博客不同设备进行同步更新</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-21 16:43:39 / 修改时间：18:04:55" itemprop="dateCreated datePublished" datetime="2020-05-21T16:43:39+08:00">2020-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作归纳/" itemprop="url" rel="index"><span itemprop="name">操作归纳</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前在单位电脑上基于hexo+github page+coding搭建了自己的博客，之后面临着可能换电脑或者在家编辑博客的问题，所以想要对博客进行多端操作，参照了<a href="https://www.zhihu.com/question/21193762" target="_blank" rel="noopener">知乎上的高赞答案</a>,整体已完成.现将具体方法及碰到的问题做个总结归纳（以下所有内容只针对于github）</p>
+<h2 id="1-进行本地环境备份操作"><a href="#1-进行本地环境备份操作" class="headerlink" title="1. 进行本地环境备份操作"></a>1. 进行本地环境备份操作</h2><p>首先要明确，hexo的文件目录结构，以及所有文件的作用，本机为window环境，我的目录信息如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.── .deploy_git #编译后的文件</span><br><span class="line">├── node_modules：是依赖包</span><br><span class="line">├── public  #存放被解析markdown、html文件</span><br><span class="line">├── scaffolds #当您新建文章时，根据 scaffold生成文件</span><br><span class="line">├── source  #资源文件夹</span><br><span class="line">|   └── _posts #博客文章目录</span><br><span class="line">└── themes #主题</span><br><span class="line">├── _config.yml   #网站的配置信息。标题、网站名称等</span><br><span class="line">├── db.json：#source解析所得到的</span><br><span class="line">├── package.json  # 应用程序的配置信息</span><br><span class="line">└── package-lock.json #npm5.0以上新增的程序依赖版本信息</span><br></pre></td></tr></table></figure></p>
+<p>要注意<code>package-lock.json</code>这个文件，后续有个坑就是因为它。<br>其中我们上传到github的文件是hexo编译后的文件，用来生成网页，并非是源文件。主要内容在<code>.deploy_git</code>内，其他文件都没有进行上传。想要保证其他电脑能够进行编辑操作，我们需要把源文件上传到github上，其中有两种方式：</p>
+<ol>
+<li>另建一个代码仓库，进行文件上传。</li>
+<li>在同一个仓库下创建一个分支。   </li>
+</ol>
+<p>第一种虽然更规则一些，但个人感觉不是很方便，所以我选择的是第二种。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://oldfutiger.github.io/2018/11/14/java基础总结（-）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,7 +298,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-21 16:35:51" itemprop="dateModified" datetime="2020-05-21T16:35:51+08:00">2020-05-21</time>
+                <time title="修改时间：2020-05-22 09:00:18" itemprop="dateModified" datetime="2020-05-22T09:00:18+08:00">2020-05-22</time>
               </span>
 
           
@@ -237,8 +312,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>#前言</p>
-<h2 id="进行Java基础知识总结。"><a href="#进行Java基础知识总结。" class="headerlink" title="进行Java基础知识总结。"></a>进行Java基础知识总结。</h2><p>后续做补充</p>
+          <p>#前言<br>进行Java基础知识总结。</p>
+<h2 id="20200521"><a href="#20200521" class="headerlink" title="20200521"></a>20200521</h2><p>后续做补充</p>
 
       
     </div>
@@ -322,14 +397,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
