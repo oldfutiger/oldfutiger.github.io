@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 52Hertz技术庄园                               #网站标题
-subtitle: 不爱写小说的程序员不是个好厨子             #网站副标题
+title: 知了°的技术庄园                               #网站标题
+subtitle: 衣食住行，安身立命             #网站副标题
 description: this it's a Technology sharing blog     #网站描述
 keywords:                                            
-author: Mr.Zhao                                      #您的名字
+author: 52Hertz                                      #您的名字
 language: zh-CN                                    #网站使用的语言
 timezone:                                              #网站时区。Hexo 默认使用您电脑的时区
 
@@ -35,7 +35,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0    #转换文件名，1代表小写；2代表大写；默认为0，意思就是创建文章的时候，是否自动帮你转换文件名，默认就行，意义不大。
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
