@@ -34,7 +34,7 @@ tags: hexo
 第一种虽然更规则一些，但个人感觉不是很方便，所以我选择的是第二种。
 
 首先我们需要在github仓库新建一个分支
-![](/branch-prcture.jpg)
+![](hexo博客不同设备进行同步更新/branch-prcture.jpg)
 在其中输入分支名称`hexo`，直接回车即可创建。
 
 
