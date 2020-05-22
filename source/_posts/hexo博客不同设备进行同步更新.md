@@ -6,7 +6,8 @@ tags: hexo
 ---
 # 前言
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前在单位电脑上基于hexo+github page+coding搭建了自己的博客，之后面临着可能换电脑或者在家编辑博客的问题，所以想要对博客进行多端操作，参照了[知乎上的高赞答案](https://www.zhihu.com/question/21193762),整体已完成.现将具体方法及碰到的问题做个总结归纳（以下所有内容只针对于github）
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之前在单位电脑上基于hexo+github page+coding搭建了自己的博客，之后面临着可能换电脑或者在家编辑博客的问题，所以想要对博客进行多端操作，参照了[知乎上的高赞答案](https://www.zhihu.com/question/21193762),整体已完成.现将具体方法及碰到的问题做个总结归纳（以下所有内容只针对于github）。
+<!-- more -->
 
 ## 1. 进行本地环境备份操作
 
@@ -32,7 +33,7 @@ tags: hexo
 
 第一种虽然更规则一些，但个人感觉不是很方便，所以我选择的是第二种。
 
-
+首先我们需要在github仓库新建一个分支
 
 
 
