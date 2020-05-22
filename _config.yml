@@ -13,7 +13,7 @@ timezone:                                              #网站时区。Hexo 默�
 
 # URL 网址
 ## 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，则请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。
-url: http://oldfutiger.github.io
+url: http://youngz.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
