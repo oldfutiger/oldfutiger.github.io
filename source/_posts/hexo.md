@@ -40,8 +40,11 @@ tags: hexo
 
 上一步操作已经创建好了环境存储分支，但当前的仓库默认分支仍为`master`，所以在`hexo`分支创建完成后，需要将其设置为默认分支，切换到该`hexo`分支，并在该仓库`->Settings->Branches->Default branch`中将默认分支设为`hexo`，`update`保存：
 ![](setting-picture.jpg)
-第五步务必点选。
+### 1-3. 上传配置文件
 
+此步操作需在原电脑端进行
+#### 1-3-1. 克隆`hexo`分支  ####
+* 首先创建一个克隆存放目录如`_branches_hexo`，在该文件夹下进入`git bash here`命令行，执行`git clone git@github.com:yourname/yourname.github.io.git`。
 
 
 
