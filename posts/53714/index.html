@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://youngz.top/posts/53714/setting-picture.jpg">
 <meta property="og:image" content="http://youngz.top/posts/53714/security-picture.jpg">
 <meta property="article:published_time" content="2020-05-21T08:43:39.000Z">
-<meta property="article:modified_time" content="2020-05-25T09:44:15.130Z">
+<meta property="article:modified_time" content="2020-05-25T09:49:57.468Z">
 <meta property="article:author" content="52Hertz">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-25 17:44:15" itemprop="dateModified" datetime="2020-05-25T17:44:15+08:00">2020-05-25</time>
+                <time title="修改时间：2020-05-25 17:49:57" itemprop="dateModified" datetime="2020-05-25T17:49:57+08:00">2020-05-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,18 +287,18 @@
 <p>此时，我们已完成<code>hexo</code>博客本地原部署环境的上传备份操作。之后则需要我们在新环境中进行操作。</p>
 <h2 id="2-新环境的部署编辑操作"><a href="#2-新环境的部署编辑操作" class="headerlink" title="2. 新环境的部署编辑操作"></a>2. 新环境的部署编辑操作</h2><p>相当于初步的搭建了<code>hexo</code>环境。</p>
 <ul>
-<li><p>安装git<br><a href="https://git-scm.com/download" target="_blank" rel="noopener">git官方地址</a></p>
+<li><p>安装git：<br><a href="https://git-scm.com/download" target="_blank" rel="noopener">git官方地址</a></p>
 </li>
-<li><p>安装node.js<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js官方地址</a></p>
+<li><p>安装node.js：<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js官方地址</a></p>
 </li>
-<li><p>设置git全局邮箱和用户名</p>
+<li><p>设置git全局邮箱和用户名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourgithubname&quot;</span><br><span class="line">git config --global user.email &quot;yourgithubemail&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p>设置ssh key</p>
+<li><p>设置ssh key：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail&quot; #生成后填到github和coding上（有coding平台的话） #验证是否成功 ssh -T git@github.com ssh -T git@git.coding.net #(有coding平台的话)</span><br></pre></td></tr></table></figure></li>
-<li><p>安装hexo   </p>
-<figure class="highlight plain"><figcaption><span>install hexo-cli -g```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 在所选文件夹下克隆github上的配置环境文件</span><br><span class="line">&#96;&#96;&#96;&#96;git clone git@github.com:yourname&#x2F;yourname.github.io.git&#96;</span><br></pre></td></tr></table></figure>
+<li><p>安装hexo：   </p>
+<figure class="highlight plain"><figcaption><span>install hexo-cli -g```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 在所选文件夹下克隆github上的配置环境文件：</span><br><span class="line">&#96;&#96;&#96;&#96;git clone git@github.com:yourname&#x2F;yourname.github.io.git&#96;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>进入到克隆文件夹下</p>
+<li><p>进入到克隆文件夹下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd xxx.github.io</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
 <li><p>生成，部署：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
