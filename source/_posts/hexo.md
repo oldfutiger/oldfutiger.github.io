@@ -52,7 +52,7 @@ date: 2020-05-21 16:43:39
 
 此步操作需在原电脑端进行
 #### 1-3-1. 克隆`hexo`分支  ####
-* 首先创建一个克隆存放目录如`_branches_hexo`，在该文件夹下进入`git bash here`命令行，执行`git clone git@github.com:yourname/yourname.github.io.git`。克隆到本地后，`cd username.github.io`进入到该文件目录   
+* 首先创建一个克隆存放目录如`_branches_hexo`，在该文件夹下进入`git bash here`命令行，执行```git clone git@github.com:yourname/yourname.github.io.git```。克隆到本地后，`cd username.github.io`进入到该文件目录   
 * 在当前目录执行`git branch`命令查看当前所在分支，应为新建的`hexo`。
 ```
 $ git branch
@@ -105,25 +105,25 @@ git push origin hexo
 此时，我们已完成`hexo`博客本地原部署环境的上传备份操作。之后则需要我们在新环境中进行操作。
 ## 2. 新环境的部署编辑操作 ##
 相当于初步的搭建了`hexo`环境。
-* 安装git   
+* 安装git：   
 [git官方地址](https://git-scm.com/download)
-* 安装node.js
+* 安装node.js：
 [node.js官方地址](https://nodejs.org/en/)
-* 设置git全局邮箱和用户名
+* 设置git全局邮箱和用户名：
 ```
 git config --global user.name "yourgithubname"
 git config --global user.email "yourgithubemail"
 ```
-* 设置ssh key
+* 设置ssh key：
 ```
 ssh-keygen -t rsa -C "youremail" #生成后填到github和coding上（有coding平台的话） #验证是否成功 ssh -T git@github.com ssh -T git@git.coding.net #(有coding平台的话)
 ```
-* 安装hexo   
+* 安装hexo：   
 ```npm install hexo-cli -g```
-* 在所选文件夹下克隆github上的配置环境文件
+* 在所选文件夹下克隆github上的配置环境文件：
 ````git clone git@github.com:yourname/yourname.github.io.git````
 
-* 进入到克隆文件夹下
+* 进入到克隆文件夹下：
 ```
 cd xxx.github.io
 npm install
