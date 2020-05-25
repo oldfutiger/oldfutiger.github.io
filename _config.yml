@@ -15,7 +15,7 @@ timezone:                                              #网站时区。Hexo 默�
 ## 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，则请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。
 url: http://youngz.top
 root: /
-permalink: :year/:month/:day/:title/
+permalink: posts/:abbrlink/ #:year/:month/:day/:title/
 permalink_defaults:
 
 # Directory 目录配置
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: next-reloaded
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
