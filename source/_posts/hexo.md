@@ -52,7 +52,11 @@ date: 2020-05-21 16:43:39
 
 此步操作需在原电脑端进行
 #### 1-3-1. 克隆`hexo`分支  ####
-* 首先创建一个克隆存放目录如`_branches_hexo`，在该文件夹下进入`git bash here`命令行，执行```git clone git@github.com:yourname/yourname.github.io.git```。克隆到本地后，`cd username.github.io`进入到该文件目录   
+* 首先创建一个克隆存放目录如`_branches_hexo`，在该文件夹下进入`git bash here`命令行，执行：
+```
+git clone git@github.com:yourname/yourname.github.io.git
+```
+克隆到本地后，`cd username.github.io`进入到该文件目录   
 * 在当前目录执行`git branch`命令查看当前所在分支，应为新建的`hexo`。
 ```
 $ git branch
@@ -116,12 +120,20 @@ git config --global user.email "yourgithubemail"
 ```
 * 设置ssh key：
 ```
-ssh-keygen -t rsa -C "youremail" #生成后填到github和coding上（有coding平台的话） #验证是否成功 ssh -T git@github.com ssh -T git@git.coding.net #(有coding平台的话)
+ssh-keygen -t rsa -C "youremail" #生成后填到github和coding上（有coding平台的话） 
+#验证是否成功 
+ssh -T git@github.com 
+ssh -T git@git.coding.net #(有coding平台的话)
 ```
 * 安装hexo：   
-```npm install hexo-cli -g```
+```
+npm install hexo-cli -g
+```
+
 * 在所选文件夹下克隆github上的配置环境文件：
-````git clone git@github.com:yourname/yourname.github.io.git````
+````
+git clone git@github.com:yourname/yourname.github.io.git
+````
 
 * 进入到克隆文件夹下：
 ```
