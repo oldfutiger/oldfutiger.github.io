@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (trigger === 'auto') {
       // Register beforeunload event
       window.addEventListener('beforeunload', doSaveScroll);
-      document.addEventListener('pjax:send', doSaveScroll);
+      window.addEventListener('pjax:send', doSaveScroll);
     }
     // Save the position by clicking the icon
     link.addEventListener('click', () => {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
     scrollToMark();
-    document.addEventListener('pjax:success', scrollToMark);
+    window.addEventListener('pjax:success', scrollToMark);
   };
 
   init(CONFIG.bookmark.save);

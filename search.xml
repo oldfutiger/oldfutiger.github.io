@@ -1,13 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>java基础总结（-）</title>
-    <url>/2018/11/14/java%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93%EF%BC%88-%EF%BC%89/</url>
-    <content><![CDATA[<p>#前言<br>进行Java基础知识总结。</p>
-<h2 id="20200521"><a href="#20200521" class="headerlink" title="20200521"></a>20200521</h2><p>后续做补充</p>
+    <title>hexo博客不同设备进行同步更新</title>
+    <url>/posts/53714/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前在单位电脑上基于hexo+github page+coding搭建了自己的博客，之后面临着可能换电脑或者在家编辑博客的问题，所以想要对博客进行多端操作，参照了<a href="https://www.zhihu.com/question/21193762" target="_blank" rel="noopener">知乎上的高赞答案</a>，整体已完成。现将具体方法及碰到的问题做个总结归纳（以下所有内容只针对于github）。</p>
+<a id="more"></a>
+
+<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
+<li>system：<code>windows 10</code>；</li>
+<li>npm：6.4.1；</li>
+<li>hexo：4.2.1；</li>
+<li>next：7.8.0；</li>
+</ul>
+<h2 id="1-进行本地环境备份操作"><a href="#1-进行本地环境备份操作" class="headerlink" title="1. 进行本地环境备份操作"></a>1. 进行本地环境备份操作</h2><p>首先要明确，hexo的文件目录结构，以及所有文件的作用，本机为window环境，我的目录信息如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.── .deploy_git #编译后的文件</span><br><span class="line">├── node_modules：是依赖包</span><br><span class="line">├── public  #存放被解析markdown、html文件</span><br><span class="line">├── scaffolds #当您新建文章时，根据 scaffold生成文件</span><br><span class="line">├── source  #资源文件夹</span><br><span class="line">|   └── _posts #博客文章目录</span><br><span class="line">└── themes #主题</span><br><span class="line">├── _config.yml   #网站的配置信息。标题、网站名称等</span><br><span class="line">├── db.json：#source解析所得到的</span><br><span class="line">├── package.json  # 应用程序的配置信息</span><br><span class="line">└── package-lock.json #npm5.0以上新增的程序依赖版本信息</span><br></pre></td></tr></table></figure>
+<p>要注意<code>package-lock.json</code>这个文件，后续有个坑就是因为它。<br>其中我们上传到github的文件是hexo编译后的文件，用来生成网页，并非是源文件。主要内容在<code>.deploy_git</code>内，其他文件都没有进行上传。想要保证其他电脑能够进行编辑操作，我们需要把源文件上传到github上，其中有两种方式：</p>
+<ol>
+<li>另建一个代码仓库，进行文件上传。</li>
+<li>在同一个仓库下创建一个分支。   </li>
+</ol>
+<p>第一种虽然更规则一些，但个人感觉不是很方便，所以我选择的是第二种。</p>
+<h3 id="1-1-创建分支"><a href="#1-1-创建分支" class="headerlink" title="1-1. 创建分支"></a>1-1. 创建分支</h3><p>首先我们需要在github仓库新建一个分支：<br><img src="/.top//branch-picture.jpg" alt><br>在其中输入分支名称<code>hexo</code>，直接回车即可创建。</p>
+<h3 id="1-2-分支设置"><a href="#1-2-分支设置" class="headerlink" title="1-2. 分支设置"></a>1-2. 分支设置</h3><p>上一步操作已经创建好了环境存储分支，但当前的仓库默认分支仍为<code>master</code>，所以在<code>hexo</code>分支创建完成后，需要将其设置为默认分支。切换到该<code>hexo</code>分支，并在该仓库<code>-&gt;Settings-&gt;Branches-&gt;Default branch</code>中将默认分支设为<code>hexo</code>，<code>update</code>保存：<br><img src="/.top//setting-picture.jpg" alt></p>
+<h3 id="1-3-上传配置文件"><a href="#1-3-上传配置文件" class="headerlink" title="1-3. 上传配置文件"></a>1-3. 上传配置文件</h3><p>此步操作需在原电脑端进行</p>
+<h4 id="1-3-1-克隆hexo分支"><a href="#1-3-1-克隆hexo分支" class="headerlink" title="1-3-1. 克隆hexo分支"></a>1-3-1. 克隆<code>hexo</code>分支</h4><ul>
+<li>首先创建一个克隆存放目录如<code>_branches_hexo</code>，在该文件夹下进入<code>git bash here</code>命令行，执行：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone git@github.com:yourname&#x2F;yourname.github.io.git</span><br></pre></td></tr></table></figure>
+克隆到本地后，<code>cd username.github.io</code>进入到该文件目录   </li>
+<li>在当前目录执行<code>git branch</code>命令查看当前所在分支，应为新建的<code>hexo</code>。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">*hexo</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-2-上传部署文件"><a href="#1-3-2-上传部署文件" class="headerlink" title="1-3-2. 上传部署文件"></a>1-3-2. 上传部署文件</h4></li>
+<li>进入到克隆分支仓库<code>_branches_hexo</code>，将<code>.git</code>文件夹复制到原博客文件目录下。如果未找到，请在查看中将<code>隐藏的文件夹</code>勾选上。</li>
+<li>删除掉主题下的<code>.git</code>文件夹，原因：git不能嵌套上传。</li>
+<li>删除掉克隆的<code>_branches_hexo</code>仓库。</li>
+<li>在原博客文件目录下，进入<code>git bash here</code>命令行，按顺序执行上传命令：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add . </span><br><span class="line">git commit -m &quot;上传备注&quot; </span><br><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
+<h5 id="问题及解决思路"><a href="#问题及解决思路" class="headerlink" title="问题及解决思路"></a>问题及解决思路</h5>此处上传到github上时，由于<code>npm</code>5及以上版本会自动创建一个<code>package-lock.json</code>文件， <code>package-lock.json</code>文件中已经记录了整个所在文件夹的树状结构，版本号，甚至连模块的下载地址都记录了。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;test_pkg_lock&quot;,</span><br><span class="line">&quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">&quot;lockfileVersion&quot;: 1,</span><br><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">&quot;commander&quot;: &#123;</span><br><span class="line">&quot;version&quot;: &quot;2.9.0&quot;,</span><br><span class="line">&quot;resolved&quot;: &quot;https:&#x2F;&#x2F;registry.npmjs.org&#x2F;commander&#x2F;-&#x2F;commander-2.9.0.tgz&quot;,</span><br><span class="line">&quot;integrity&quot;: &quot;sha1-nJkJQXbhIkDLItbFFGCYQA&#x2F;g99Q&#x3D;&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;cssfilter&quot;: &#123;</span><br><span class="line">&quot;version&quot;: &quot;0.0.8&quot;,</span><br><span class="line">&quot;resolved&quot;: &quot;https:&#x2F;&#x2F;registry.npmjs.org&#x2F;cssfilter&#x2F;-&#x2F;cssfilter-0.0.8.tgz&quot;,</span><br><span class="line">&quot;integrity&quot;: &quot;sha1-ZWTKzLqKdt2bS5IGaLn7f9pQ5Uw&#x3D;&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;graceful-readlink&quot;: &#123;</span><br><span class="line">&quot;version&quot;: &quot;1.0.1&quot;,</span><br><span class="line">&quot;resolved&quot;: &quot;https:&#x2F;&#x2F;registry.npmjs.org&#x2F;graceful-readlink&#x2F;-&#x2F;graceful-readlink-1.0.1.tgz&quot;,</span><br><span class="line">&quot;integrity&quot;: &quot;sha1-TK+tdrxi8C+gObL5Tpo906ORpyU&#x3D;&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;xss&quot;: &#123;</span><br><span class="line">&quot;version&quot;: &quot;0.2.18&quot;,</span><br><span class="line">&quot;resolved&quot;: &quot;https:&#x2F;&#x2F;registry.npmjs.org&#x2F;xss&#x2F;-&#x2F;xss-0.2.18.tgz&quot;,</span><br><span class="line">&quot;integrity&quot;: &quot;sha1-bfX7XKKL3FHnhiT&#x2F;Y&#x2F;GeE+vXO6s&#x3D;&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
+增加了日后我们更新依赖或重新安装的下载速度。但<code>github</code>对我们上传的文件做了漏洞扫描及智能分析处理，所以<code>package-lock.json</code>文件中部分版本会被提示高风险警告。正确的做法是按照其提示进行版本升级，但由于<code>hexo</code>整体版本依赖要求较高，所以我的做法是忽略掉<code>github</code>的安全警告。<br><img src="/.top//security-picture.jpg" alt><br>在标识位置点选相关的操作，我这是已经选完的截图。</li>
+</ul>
+<p>此时，我们已完成<code>hexo</code>博客本地原部署环境的上传备份操作。之后则需要我们在新环境中进行操作。</p>
+<h2 id="2-新环境的部署编辑操作"><a href="#2-新环境的部署编辑操作" class="headerlink" title="2. 新环境的部署编辑操作"></a>2. 新环境的部署编辑操作</h2><p>相当于初步的搭建了<code>hexo</code>环境。</p>
+<ul>
+<li><p>安装git：<br><a href="https://git-scm.com/download" target="_blank" rel="noopener">git官方地址</a></p>
+</li>
+<li><p>安装node.js：<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js官方地址</a></p>
+</li>
+<li><p>设置git全局邮箱和用户名：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;yourgithubname&quot;</span><br><span class="line">git config --global user.email &quot;yourgithubemail&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>设置ssh key：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail&quot; #生成后填到github和coding上（有coding平台的话） </span><br><span class="line">#验证是否成功 </span><br><span class="line">ssh -T git@github.com </span><br><span class="line">ssh -T git@git.coding.net #(有coding平台的话)</span><br></pre></td></tr></table></figure></li>
+<li><p>安装hexo：   </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在所选文件夹下克隆github上的配置环境文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone git@github.com:yourname&#x2F;yourname.github.io.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入到克隆文件夹下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd xxx.github.io</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
+<li><p>生成，部署：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h5 id="remark"><a href="#remark" class="headerlink" title="remark"></a>remark</h5></li>
+</ul>
+<ol>
+<li><p>在不同客户端编写博客前，需要执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<p>拉取命令来保证版本一致。</p>
+</li>
+<li><p>写完博客后，请先提交源文件到hexo分支后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add . </span><br><span class="line">git commit -m &quot;上传备注&quot; </span><br><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
+<p>再执行<code>hexo d</code>上传操作。</p>
+</li>
+</ol>
 ]]></content>
+      <categories>
+        <category>操作归纳</category>
+      </categories>
       <tags>
-        <tag>java</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>

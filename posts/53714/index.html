@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"youngz.top","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言之前在单位电脑上基于hexo+github page+coding搭建了自己的博客，之后面临着可能换电脑或者在家编辑博客的问题，所以想要对博客进行多端操作，参照了知乎上的高赞答案，整体已完成。现将具体方法及碰到的问题做个总结归纳（以下所有内容只针对于github）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo博客不同设备进行同步更新">
+<meta property="og:url" content="http://youngz.top/posts/53714/index.html">
+<meta property="og:site_name" content="知了°的技术庄园">
+<meta property="og:description" content="前言之前在单位电脑上基于hexo+github page+coding搭建了自己的博客，之后面临着可能换电脑或者在家编辑博客的问题，所以想要对博客进行多端操作，参照了知乎上的高赞答案，整体已完成。现将具体方法及碰到的问题做个总结归纳（以下所有内容只针对于github）。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://youngz.top/.top//branch-picture.jpg">
+<meta property="og:image" content="http://youngz.top/.top//setting-picture.jpg">
+<meta property="og:image" content="http://youngz.top/.top//security-picture.jpg">
+<meta property="article:published_time" content="2020-05-21T08:43:39.000Z">
+<meta property="article:modified_time" content="2020-05-26T14:37:31.606Z">
+<meta property="article:author" content="52Hertz">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://youngz.top/.top//branch-picture.jpg">
+
+<link rel="canonical" href="http://youngz.top/posts/53714/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>hexo博客不同设备进行同步更新 | 知了°的技术庄园</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="知了°的技术庄园" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">知了°的技术庄园</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">衣食住行，安身立命</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/oldfutiger/oldfutiger.github.io" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://youngz.top/posts/53714/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="52Hertz">
+      <meta itemprop="description" content="this it's a Technology sharing blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知了°的技术庄园">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo博客不同设备进行同步更新
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-21 16:43:39" itemprop="dateCreated datePublished" datetime="2020-05-21T16:43:39+08:00">2020-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-26 22:37:31" itemprop="dateModified" datetime="2020-05-26T22:37:31+08:00">2020-05-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E5%BD%92%E7%BA%B3/" itemprop="url" rel="index"><span itemprop="name">操作归纳</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前在单位电脑上基于hexo+github page+coding搭建了自己的博客，之后面临着可能换电脑或者在家编辑博客的问题，所以想要对博客进行多端操作，参照了<a href="https://www.zhihu.com/question/21193762" target="_blank" rel="noopener">知乎上的高赞答案</a>，整体已完成。现将具体方法及碰到的问题做个总结归纳（以下所有内容只针对于github）。</p>
+<a id="more"></a>
+
+<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
+<li>system：<code>windows 10</code>；</li>
+<li>npm：6.4.1；</li>
+<li>hexo：4.2.1；</li>
+<li>next：7.8.0；</li>
+</ul>
+<h2 id="1-进行本地环境备份操作"><a href="#1-进行本地环境备份操作" class="headerlink" title="1. 进行本地环境备份操作"></a>1. 进行本地环境备份操作</h2><p>首先要明确，hexo的文件目录结构，以及所有文件的作用，本机为window环境，我的目录信息如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.── .deploy_git #编译后的文件</span><br><span class="line">├── node_modules：是依赖包</span><br><span class="line">├── public  #存放被解析markdown、html文件</span><br><span class="line">├── scaffolds #当您新建文章时，根据 scaffold生成文件</span><br><span class="line">├── source  #资源文件夹</span><br><span class="line">|   └── _posts #博客文章目录</span><br><span class="line">└── themes #主题</span><br><span class="line">├── _config.yml   #网站的配置信息。标题、网站名称等</span><br><span class="line">├── db.json：#source解析所得到的</span><br><span class="line">├── package.json  # 应用程序的配置信息</span><br><span class="line">└── package-lock.json #npm5.0以上新增的程序依赖版本信息</span><br></pre></td></tr></table></figure>
+<p>要注意<code>package-lock.json</code>这个文件，后续有个坑就是因为它。<br>其中我们上传到github的文件是hexo编译后的文件，用来生成网页，并非是源文件。主要内容在<code>.deploy_git</code>内，其他文件都没有进行上传。想要保证其他电脑能够进行编辑操作，我们需要把源文件上传到github上，其中有两种方式：</p>
+<ol>
+<li>另建一个代码仓库，进行文件上传。</li>
+<li>在同一个仓库下创建一个分支。   </li>
+</ol>
+<p>第一种虽然更规则一些，但个人感觉不是很方便，所以我选择的是第二种。</p>
+<h3 id="1-1-创建分支"><a href="#1-1-创建分支" class="headerlink" title="1-1. 创建分支"></a>1-1. 创建分支</h3><p>首先我们需要在github仓库新建一个分支：<br><img src="/.top//branch-picture.jpg" alt><br>在其中输入分支名称<code>hexo</code>，直接回车即可创建。</p>
+<h3 id="1-2-分支设置"><a href="#1-2-分支设置" class="headerlink" title="1-2. 分支设置"></a>1-2. 分支设置</h3><p>上一步操作已经创建好了环境存储分支，但当前的仓库默认分支仍为<code>master</code>，所以在<code>hexo</code>分支创建完成后，需要将其设置为默认分支。切换到该<code>hexo</code>分支，并在该仓库<code>-&gt;Settings-&gt;Branches-&gt;Default branch</code>中将默认分支设为<code>hexo</code>，<code>update</code>保存：<br><img src="/.top//setting-picture.jpg" alt></p>
+<h3 id="1-3-上传配置文件"><a href="#1-3-上传配置文件" class="headerlink" title="1-3. 上传配置文件"></a>1-3. 上传配置文件</h3><p>此步操作需在原电脑端进行</p>
+<h4 id="1-3-1-克隆hexo分支"><a href="#1-3-1-克隆hexo分支" class="headerlink" title="1-3-1. 克隆hexo分支"></a>1-3-1. 克隆<code>hexo</code>分支</h4><ul>
+<li>首先创建一个克隆存放目录如<code>_branches_hexo</code>，在该文件夹下进入<code>git bash here</code>命令行，执行：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:yourname&#x2F;yourname.github.io.git</span><br></pre></td></tr></table></figure>
+克隆到本地后，<code>cd username.github.io</code>进入到该文件目录   </li>
+<li>在当前目录执行<code>git branch</code>命令查看当前所在分支，应为新建的<code>hexo</code>。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">*hexo</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-2-上传部署文件"><a href="#1-3-2-上传部署文件" class="headerlink" title="1-3-2. 上传部署文件"></a>1-3-2. 上传部署文件</h4></li>
+<li>进入到克隆分支仓库<code>_branches_hexo</code>，将<code>.git</code>文件夹复制到原博客文件目录下。如果未找到，请在查看中将<code>隐藏的文件夹</code>勾选上。</li>
+<li>删除掉主题下的<code>.git</code>文件夹，原因：git不能嵌套上传。</li>
+<li>删除掉克隆的<code>_branches_hexo</code>仓库。</li>
+<li>在原博客文件目录下，进入<code>git bash here</code>命令行，按顺序执行上传命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add . </span><br><span class="line">git commit -m &quot;上传备注&quot; </span><br><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
+<h5 id="问题及解决思路"><a href="#问题及解决思路" class="headerlink" title="问题及解决思路"></a>问题及解决思路</h5>此处上传到github上时，由于<code>npm</code>5及以上版本会自动创建一个<code>package-lock.json</code>文件， <code>package-lock.json</code>文件中已经记录了整个所在文件夹的树状结构，版本号，甚至连模块的下载地址都记录了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;name&quot;: &quot;test_pkg_lock&quot;,</span><br><span class="line">&quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">&quot;lockfileVersion&quot;: 1,</span><br><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">&quot;commander&quot;: &#123;</span><br><span class="line">&quot;version&quot;: &quot;2.9.0&quot;,</span><br><span class="line">&quot;resolved&quot;: &quot;https:&#x2F;&#x2F;registry.npmjs.org&#x2F;commander&#x2F;-&#x2F;commander-2.9.0.tgz&quot;,</span><br><span class="line">&quot;integrity&quot;: &quot;sha1-nJkJQXbhIkDLItbFFGCYQA&#x2F;g99Q&#x3D;&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;cssfilter&quot;: &#123;</span><br><span class="line">&quot;version&quot;: &quot;0.0.8&quot;,</span><br><span class="line">&quot;resolved&quot;: &quot;https:&#x2F;&#x2F;registry.npmjs.org&#x2F;cssfilter&#x2F;-&#x2F;cssfilter-0.0.8.tgz&quot;,</span><br><span class="line">&quot;integrity&quot;: &quot;sha1-ZWTKzLqKdt2bS5IGaLn7f9pQ5Uw&#x3D;&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;graceful-readlink&quot;: &#123;</span><br><span class="line">&quot;version&quot;: &quot;1.0.1&quot;,</span><br><span class="line">&quot;resolved&quot;: &quot;https:&#x2F;&#x2F;registry.npmjs.org&#x2F;graceful-readlink&#x2F;-&#x2F;graceful-readlink-1.0.1.tgz&quot;,</span><br><span class="line">&quot;integrity&quot;: &quot;sha1-TK+tdrxi8C+gObL5Tpo906ORpyU&#x3D;&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;xss&quot;: &#123;</span><br><span class="line">&quot;version&quot;: &quot;0.2.18&quot;,</span><br><span class="line">&quot;resolved&quot;: &quot;https:&#x2F;&#x2F;registry.npmjs.org&#x2F;xss&#x2F;-&#x2F;xss-0.2.18.tgz&quot;,</span><br><span class="line">&quot;integrity&quot;: &quot;sha1-bfX7XKKL3FHnhiT&#x2F;Y&#x2F;GeE+vXO6s&#x3D;&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
+增加了日后我们更新依赖或重新安装的下载速度。但<code>github</code>对我们上传的文件做了漏洞扫描及智能分析处理，所以<code>package-lock.json</code>文件中部分版本会被提示高风险警告。正确的做法是按照其提示进行版本升级，但由于<code>hexo</code>整体版本依赖要求较高，所以我的做法是忽略掉<code>github</code>的安全警告。<br><img src="/.top//security-picture.jpg" alt><br>在标识位置点选相关的操作，我这是已经选完的截图。</li>
+</ul>
+<p>此时，我们已完成<code>hexo</code>博客本地原部署环境的上传备份操作。之后则需要我们在新环境中进行操作。</p>
+<h2 id="2-新环境的部署编辑操作"><a href="#2-新环境的部署编辑操作" class="headerlink" title="2. 新环境的部署编辑操作"></a>2. 新环境的部署编辑操作</h2><p>相当于初步的搭建了<code>hexo</code>环境。</p>
+<ul>
+<li><p>安装git：<br><a href="https://git-scm.com/download" target="_blank" rel="noopener">git官方地址</a></p>
+</li>
+<li><p>安装node.js：<br><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js官方地址</a></p>
+</li>
+<li><p>设置git全局邮箱和用户名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourgithubname&quot;</span><br><span class="line">git config --global user.email &quot;yourgithubemail&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>设置ssh key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail&quot; #生成后填到github和coding上（有coding平台的话） </span><br><span class="line">#验证是否成功 </span><br><span class="line">ssh -T git@github.com </span><br><span class="line">ssh -T git@git.coding.net #(有coding平台的话)</span><br></pre></td></tr></table></figure></li>
+<li><p>安装hexo：   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在所选文件夹下克隆github上的配置环境文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:yourname&#x2F;yourname.github.io.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入到克隆文件夹下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd xxx.github.io</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
+<li><p>生成，部署：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h5 id="remark"><a href="#remark" class="headerlink" title="remark"></a>remark</h5></li>
+</ul>
+<ol>
+<li><p>在不同客户端编写博客前，需要执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<p>拉取命令来保证版本一致。</p>
+</li>
+<li><p>写完博客后，请先提交源文件到hexo分支后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add . </span><br><span class="line">git commit -m &quot;上传备注&quot; </span><br><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
+<p>再执行<code>hexo d</code>上传操作。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+	<!-- 文章结束表示语-->
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+
+
+
+
+      
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>52Hertz
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://youngz.top/posts/53714/" title="hexo博客不同设备进行同步更新">http://youngz.top/posts/53714/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+	
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"> <i class="fa fa-tag"></i> hexo</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境说明"><span class="nav-number">1.1.</span> <span class="nav-text">环境说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-进行本地环境备份操作"><span class="nav-number">1.2.</span> <span class="nav-text">1. 进行本地环境备份操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-创建分支"><span class="nav-number">1.2.1.</span> <span class="nav-text">1-1. 创建分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-分支设置"><span class="nav-number">1.2.2.</span> <span class="nav-text">1-2. 分支设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-上传配置文件"><span class="nav-number">1.2.3.</span> <span class="nav-text">1-3. 上传配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-克隆hexo分支"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1-3-1. 克隆hexo分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-上传部署文件"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">1-3-2. 上传部署文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#问题及解决思路"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text">问题及解决思路</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-新环境的部署编辑操作"><span class="nav-number">1.3.</span> <span class="nav-text">2. 新环境的部署编辑操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#remark"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">remark</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="52Hertz"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">52Hertz</p>
+  <div class="site-description" itemprop="description">this it's a Technology sharing blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">52Hertz</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
