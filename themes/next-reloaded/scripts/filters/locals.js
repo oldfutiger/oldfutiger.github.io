@@ -10,7 +10,7 @@ hexo.extend.filter.register('template_locals', locals => {
   const { i18n } = hexo.theme;
   // Hexo & NexT version
   locals.hexo_version = env.version;
-  locals.next_version = require(path.normalize('../../package.json')).version;
+  locals.next_version = require(path.normalize('../../../next/package.json')).version;
   // Language & Config
   locals.title = __('title') !== 'title' ? __('title') : config.title;
   locals.subtitle = __('subtitle') !== 'subtitle' ? __('subtitle') : config.subtitle;
